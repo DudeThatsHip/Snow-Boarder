@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
+    bool canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,16 @@ public class PlayerController : MonoBehaviour
     {
         // Rotate an object around its Y (upward) axis in response to
         // left/right controls
-        RotatePlayer();
+        if(canMove)
+        {
+            RotatePlayer();
+            RespondToBoost();
+        }
+    }
 
-        // 
-        RespondToBoost();
+    public void DisabledControls()
+    {
+        canMove = false;
     }
 
     void RespondToBoost()
